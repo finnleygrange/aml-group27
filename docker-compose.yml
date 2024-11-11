@@ -1,0 +1,69 @@
+services:
+  frontend:
+    image: ${DOCKER_REGISTRY-}frontend
+    build:
+      context: .
+      dockerfile: Frontend/Dockerfile
+
+  inventorymanagementservice:
+    image: ${DOCKER_REGISTRY-}inventorymanagementservice
+    build:
+      context: .
+      dockerfile: InventoryManagementService/Dockerfile
+
+
+  mediaborrowingservice:
+    image: ${DOCKER_REGISTRY-}mediaborrowingservice
+    build:
+      context: .
+      dockerfile: MediaBorrowingService/Dockerfile
+
+
+  mediamanagementservice:
+    image: ${DOCKER_REGISTRY-}mediamanagementservice
+    build:
+      context: .
+      dockerfile: MediaManagementService/Dockerfile
+
+
+  mediareturnservice:
+    image: ${DOCKER_REGISTRY-}mediareturnservice
+    build:
+      context: .
+      dockerfile: MediaReturnService/Dockerfile
+
+
+  mediasearchservice:
+    image: ${DOCKER_REGISTRY-}mediasearchservice
+    build:
+      context: .
+      dockerfile: MediaSearchService/Dockerfile
+
+
+  notificationservice:
+    image: ${DOCKER_REGISTRY-}notificationservice
+    build:
+      context: .
+      dockerfile: NotificationService/Dockerfile
+
+
+  paymentservice:
+    image: ${DOCKER_REGISTRY-}paymentservice
+    build:
+      context: .
+      dockerfile: PaymentService/Dockerfile
+
+
+  reportingservice:
+    image: ${DOCKER_REGISTRY-}reportingservice
+    build:
+      context: .
+      dockerfile: ReportingService/Dockerfile
+
+
+  usermanagementservice:
+    image: ${DOCKER_REGISTRY-}usermanagementservice
+    build:
+      context: .
+      dockerfile: UserManagementService/Dockerfile
+
