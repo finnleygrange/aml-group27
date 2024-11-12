@@ -13,7 +13,10 @@
         "notificationservice": "StartDebugging",
         "paymentservice": "StartDebugging",
         "reportingservice": "StartDebugging",
-        "usermanagementservice": "StartDebugging"
+        "usermanagementservice": "StartDebugging",
+        "transactionservice": "StartDebugging",
+        "mediaservice": "StartDebugging",
+        "inventoryservice": "StartDebugging"
       }
     }
   }
