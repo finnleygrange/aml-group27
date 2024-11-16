@@ -5,13 +5,11 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend", "Frontend\Frontend.csproj", "{7EA4B5E3-2DFC-49A4-BF56-4A9A18F61346}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{471B7B40-FC28-402A-A7D5-0B24F12EB9AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaService", "MediaService\MediaService.csproj", "{395E4D91-71C5-4036-98CC-9A91BC460EA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaService", "MediaService\MediaService.csproj", "{395E4D91-71C5-4036-98CC-9A91BC460EA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryService", "InventoryService\InventoryService.csproj", "{85F4AE83-B080-4247-91F0-2163A424E7CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryService", "InventoryService\InventoryService.csproj", "{85F4AE83-B080-4247-91F0-2163A424E7CD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionService", "TransactionService\TransactionService.csproj", "{50B4729B-94B2-4A05-87FB-314A14DA7AED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionService", "TransactionService\TransactionService.csproj", "{50B4729B-94B2-4A05-87FB-314A14DA7AED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{7EA4B5E3-2DFC-49A4-BF56-4A9A18F61346}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EA4B5E3-2DFC-49A4-BF56-4A9A18F61346}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EA4B5E3-2DFC-49A4-BF56-4A9A18F61346}.Release|Any CPU.Build.0 = Release|Any CPU
-		{471B7B40-FC28-402A-A7D5-0B24F12EB9AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{471B7B40-FC28-402A-A7D5-0B24F12EB9AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{471B7B40-FC28-402A-A7D5-0B24F12EB9AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{471B7B40-FC28-402A-A7D5-0B24F12EB9AA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{395E4D91-71C5-4036-98CC-9A91BC460EA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{395E4D91-71C5-4036-98CC-9A91BC460EA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{395E4D91-71C5-4036-98CC-9A91BC460EA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
