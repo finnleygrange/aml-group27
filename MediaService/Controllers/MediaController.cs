@@ -1,5 +1,4 @@
 ﻿using MediaService.Data;
-using MediaService.DTOs;
 using MediaService.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,13 +20,6 @@ namespace MediaService.Controllers
         public async Task<ActionResult<List<MediaItem>>> GetAllMediaItems()
         {
             var mediaItems = await _dbContext.MediaItems.ToListAsync();
-
-            var mediaDtos = mediaItems.Select(m => new MediaItemDto
-            {
-                Title = m.Title,
-                Description = m.Description
-            }).ToList();
-
             return Ok(mediaItems);
         }
 
@@ -36,26 +28,17 @@ namespace MediaService.Controllers
         {
             var mediaItem = await _dbContext.MediaItems.FindAsync(id);
 
-            if (mediaItem == null) { return NotFound(); }
-
-            var mediaDto = new MediaItemDto
+            if (mediaItem == null)
             {
-                Title = mediaItem.Title,
-                Description = mediaItem.Description
-            };
+                return NotFound();
+            }
 
             return Ok(mediaItem);
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<MediaItem>>> AddMediaItem(MediaItemDto mediaItemDto)
+        public async Task<ActionResult<List<MediaItem>>> AddMediaItem(MediaItem mediaItem)
         {
-            var mediaItem = new MediaItem
-            {
-                Title = mediaItemDto.Title,
-                Description = mediaItemDto.Description
-            };
-
             _dbContext.MediaItems.Add(mediaItem);
             await _dbContext.SaveChangesAsync();
 
@@ -67,7 +50,10 @@ namespace MediaService.Controllers
         {
             var dbMediaItem = await _dbContext.MediaItems.FindAsync(updatedMediaItem.Id);
 
-            if (dbMediaItem == null) { return NotFound(); }
+            if (dbMediaItem == null)
+            {
+                return NotFound();
+            }
 
             dbMediaItem.Title = updatedMediaItem.Title;
             dbMediaItem.Description = updatedMediaItem.Description;
@@ -82,7 +68,10 @@ namespace MediaService.Controllers
         {
             var dbMediaItem = await _dbContext.MediaItems.FindAsync(id);
 
-            if (dbMediaItem == null) { return NotFound(); }
+            if (dbMediaItem == null)
+            {
+                return NotFound();
+            }
 
             _dbContext.MediaItems.Remove(dbMediaItem);
 
@@ -90,9 +79,5 @@ namespace MediaService.Controllers
 
             return Ok(await _dbContext.MediaItems.ToListAsync());
         }
-
-
-
     }
-
 }
