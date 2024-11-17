@@ -2,20 +2,11 @@
 {
     public class Transaction
     {
-        public int TransactionId { get; set; }
-        public int UserId { get; set; }
-        public int MediaId { get; set; }
+        public int Id { get; set; }
+        public int MediaItemId { get; set; }
+        public string UserId { get; set; }
         public DateTime BorrowDate { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime? ReturnDate { get; set; }
-        public bool IsRenewed { get; set; }
-
-        public bool IsOverdue
-        {
-            get
-            {
-                return ReturnDate == null && DateTime.Now > DueDate;
-            }
-        }
     }
 }
