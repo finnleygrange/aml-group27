@@ -3,6 +3,7 @@ using MediaService.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediaService.Migrations
 {
     [DbContext(typeof(MediaServiceDbContext))]
-    partial class MediaServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241118131740_ImplementInheritance")]
+    partial class ImplementInheritance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,6 +40,11 @@ namespace MediaService.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("MediaTypeDiscriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
                     b.Property<int>("MediaTypeId")
                         .HasColumnType("int");
 
@@ -48,9 +56,11 @@ namespace MediaService.Migrations
 
                     b.HasIndex("MediaTypeId");
 
-                    b.ToTable("MediaItems", (string)null);
+                    b.ToTable("MediaItems");
 
-                    b.UseTptMappingStrategy();
+                    b.HasDiscriminator<string>("MediaTypeDiscriminator").HasValue("MediaItem");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("MediaService.Models.MediaType", b =>
@@ -112,7 +122,7 @@ namespace MediaService.Migrations
                     b.Property<int>("PageCount")
                         .HasColumnType("int");
 
-                    b.ToTable("Books", (string)null);
+                    b.HasDiscriminator().HasValue("Book");
 
                     b.HasData(
                         new
@@ -142,7 +152,7 @@ namespace MediaService.Migrations
                     b.Property<int>("ReleaseYear")
                         .HasColumnType("int");
 
-                    b.ToTable("DVDs", (string)null);
+                    b.HasDiscriminator().HasValue("DVD");
 
                     b.HasData(
                         new
@@ -154,7 +164,7 @@ namespace MediaService.Migrations
                             Title = "Example DVD",
                             Director = "Jane Smith",
                             DurationMinutes = 120,
-                            ReleaseYear = 2020
+                            ReleaseYear = 0
                         });
                 });
 
@@ -178,7 +188,7 @@ namespace MediaService.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Games", (string)null);
+                    b.HasDiscriminator().HasValue("Game");
 
                     b.HasData(
                         new
@@ -188,9 +198,9 @@ namespace MediaService.Migrations
                             ImageUrl = "https://example.com/images/game.jpg",
                             MediaTypeId = 3,
                             Title = "Example Game",
-                            AgeRating = "Mature",
+                            AgeRating = "E",
                             Developer = "GameDev Studios",
-                            Genre = "Action",
+                            Genre = "Survival",
                             Platform = "PC"
                         });
                 });
@@ -206,7 +216,7 @@ namespace MediaService.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Journals", (string)null);
+                    b.HasDiscriminator().HasValue("Journal");
 
                     b.HasData(
                         new
@@ -216,8 +226,8 @@ namespace MediaService.Migrations
                             ImageUrl = "https://example.com/images/journal.jpg",
                             MediaTypeId = 4,
                             Title = "Example Journal",
-                            IssueNumber = 12,
-                            Publisher = "Science Publishing"
+                            IssueNumber = 42,
+                            Publisher = "Science Journal Press"
                         });
                 });
 
@@ -230,42 +240,6 @@ namespace MediaService.Migrations
                         .IsRequired();
 
                     b.Navigation("MediaType");
-                });
-
-            modelBuilder.Entity("MediaService.Models.Book", b =>
-                {
-                    b.HasOne("MediaService.Models.MediaItem", null)
-                        .WithOne()
-                        .HasForeignKey("MediaService.Models.Book", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MediaService.Models.DVD", b =>
-                {
-                    b.HasOne("MediaService.Models.MediaItem", null)
-                        .WithOne()
-                        .HasForeignKey("MediaService.Models.DVD", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MediaService.Models.Game", b =>
-                {
-                    b.HasOne("MediaService.Models.MediaItem", null)
-                        .WithOne()
-                        .HasForeignKey("MediaService.Models.Game", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MediaService.Models.Journal", b =>
-                {
-                    b.HasOne("MediaService.Models.MediaItem", null)
-                        .WithOne()
-                        .HasForeignKey("MediaService.Models.Journal", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
