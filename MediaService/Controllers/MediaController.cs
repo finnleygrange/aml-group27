@@ -278,7 +278,7 @@ namespace MediaService.Controllers
         public async Task<ActionResult<Journal>> GetJournal(int id)
         {
             var journal = await _dbContext.Journals
-                                          .Include(j => j.MediaType)
+                                          .Include(j => j.MediaType) 
                                           .FirstOrDefaultAsync(j => j.Id == id);
 
             if (journal == null)
