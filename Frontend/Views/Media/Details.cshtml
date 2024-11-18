@@ -1,0 +1,27 @@
+﻿@model MediaService.Models.MediaItem
+
+@{
+    ViewData["Title"] = "Media Item Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model != null)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">ID: @Model.Id</h6>
+            <p class="card-text">@Model.Description</p>
+
+            <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-warning">Edit</a>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        Media item not found!
+    </div>
+}

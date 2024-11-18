@@ -1,0 +1,29 @@
+﻿@model MediaService.Models.MediaItem
+
+@{
+    ViewData["Title"] = "Delete Media Item";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model != null)
+{
+    <div class="alert alert-warning" role="alert">
+        Are you sure you want to delete the media item: <strong>@Model.Title</strong>?
+    </div>
+
+    <form action="@Url.Action("DeleteConfirmed", new { id = Model.Id })" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+    </form>
+
+
+
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        Media item not found!
+    </div>
+}

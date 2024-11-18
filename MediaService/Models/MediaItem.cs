@@ -1,4 +1,6 @@
-﻿namespace MediaService.Models
+﻿using System.Text.Json.Serialization;
+
+namespace MediaService.Models
 {
     public class MediaItem
     {
