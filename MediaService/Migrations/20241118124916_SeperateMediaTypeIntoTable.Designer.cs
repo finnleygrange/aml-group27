@@ -3,6 +3,7 @@ using MediaService.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediaService.Migrations
 {
     [DbContext(typeof(MediaServiceDbContext))]
-    partial class MediaServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241118124916_SeperateMediaTypeIntoTable")]
+    partial class SeperateMediaTypeIntoTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

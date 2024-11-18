@@ -3,6 +3,7 @@ using MediaService.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediaService.Migrations
 {
     [DbContext(typeof(MediaServiceDbContext))]
-    partial class MediaServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241118124425_AddSeedExampleData")]
+    partial class AddSeedExampleData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,16 +40,15 @@ namespace MediaService.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MediaTypeId")
-                        .HasColumnType("int");
+                    b.Property<string>("MediaType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MediaTypeId");
 
                     b.ToTable("MediaItems");
 
@@ -56,7 +58,7 @@ namespace MediaService.Migrations
                             Id = 1,
                             Description = "An example book description.",
                             ImageUrl = "https://example.com/images/book.jpg",
-                            MediaTypeId = 1,
+                            MediaType = "Book",
                             Title = "Example Book"
                         },
                         new
@@ -64,64 +66,17 @@ namespace MediaService.Migrations
                             Id = 2,
                             Description = "An example DVD description.",
                             ImageUrl = "https://example.com/images/dvd.jpg",
-                            MediaTypeId = 2,
+                            MediaType = "DVD",
                             Title = "Example DVD"
-                        });
-                });
-
-            modelBuilder.Entity("MediaService.Models.MediaType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MediaTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Book"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "DVD"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Game"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Journal"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Multimedia"
+                            Description = "An example game description.",
+                            ImageUrl = "https://example.com/images/game.jpg",
+                            MediaType = "Game",
+                            Title = "Example Game"
                         });
-                });
-
-            modelBuilder.Entity("MediaService.Models.MediaItem", b =>
-                {
-                    b.HasOne("MediaService.Models.MediaType", "MediaType")
-                        .WithMany()
-                        .HasForeignKey("MediaTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MediaType");
                 });
 #pragma warning restore 612, 618
         }
