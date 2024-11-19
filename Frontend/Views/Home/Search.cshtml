@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Search</h1>
+
+<form class="row g-3 needs-validation" novalidate>
+  <div class="col-md-4 position-relative">
+    <label for="validationTooltip01" class="form-label">Title</label>
+    <input type="text" class="form-control" id="validationTooltip01" value="Titanic" required>
+    <div class="valid-tooltip">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-4 position-relative">
+    <label for="validationTooltip02" class="form-label">Author</label>
+    <input type="text" class="form-control" id="validationTooltip02" value="M.Otto" required>
+    <div class="valid-tooltip">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-6 position-relative">
+    <label for="validationTooltip03" class="form-label">Subject</label>
+    <input type="text" class="form-control" id="validationTooltip03" required>
+    <div class="invalid-tooltip">
+      Please provide a valid subject.
+    </div>
+  </div>
+  <div class="col-md-3 position-relative">
+    <label for="validationTooltip04" class="form-label">Year</label>
+    <select class="form-select" id="validationTooltip04" required>
+      <option selected disabled value="">2024-2020</option>
+      <option>2019-2015</option>
+      <option>2014-2010</option>
+    </select>
+    <div class="invalid-tooltip">
+      Please select a valid year.
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Search</button>
+  </div>
+</form>
