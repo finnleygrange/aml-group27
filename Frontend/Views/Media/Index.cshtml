@@ -35,25 +35,35 @@ else
 
                         <p class="card-text">@mediaItem.Description</p>
 
-                        @if (mediaItem.MediaType.Name == "Book")
+                        @switch (mediaItem.MediaType.Name)
                         {
-                            <a href="@Url.Action("GetBook", "Books", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
-                        }
-                        else if (mediaItem.MediaType.Name == "DVD")
-                        {
-                            <a href="@Url.Action("GetDvd", "Dvds", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
-                        }
-                        else if (mediaItem.MediaType.Name == "Game")
-                        {
-                            <a href="@Url.Action("GetGame", "Games", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
-                        }
-                        else if (mediaItem.MediaType.Name == "Journal")
-                        {
-                            <a href="@Url.Action("GetJournal", "Journals", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
-                        }
+                            case "Book":
+                                <a href="@Url.Action("GetBook", "Books", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
+                                <a href="@Url.Action("EditBook", "Books", new { id = mediaItem.Id })" class="btn btn-warning">Edit</a>
+                                <a href="@Url.Action("DeleteBook", "Books", new { id = mediaItem.Id })" class="btn btn-danger">Delete</a>
+                                break;
 
-                        <a href="@Url.Action("Edit", "Media", new { id = mediaItem.Id })" class="btn btn-warning">Edit</a>
-                        <a href="@Url.Action("Delete", "Media", new { id = mediaItem.Id })" class="btn btn-danger">Delete</a>
+                            case "DVD":
+                                <a href="@Url.Action("GetDvd", "Dvds", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
+                                <a href="@Url.Action("EditDvd", "Dvds", new { id = mediaItem.Id })" class="btn btn-warning">Edit</a>
+                                <a href="@Url.Action("DeleteDvd", "Dvds", new { id = mediaItem.Id })" class="btn btn-danger">Delete</a>
+                                break;
+
+                            case "Game":
+                                <a href="@Url.Action("GetGame", "Games", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
+                                <a href="@Url.Action("EditGame", "Games", new { id = mediaItem.Id })" class="btn btn-warning">Edit</a>
+                                <a href="@Url.Action("DeleteGame", "Games", new { id = mediaItem.Id })" class="btn btn-danger">Delete</a>
+                                break;
+
+                            case "Journal":
+                                <a href="@Url.Action("GetJournal", "Journals", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
+                                <a href="@Url.Action("EditJournal", "Journals", new { id = mediaItem.Id })" class="btn btn-warning">Edit</a>
+                                <a href="@Url.Action("DeleteJournal", "Journals", new { id = mediaItem.Id })" class="btn btn-danger">Delete</a>
+                                break;
+
+                            default:
+                                break;
+                        }
                     </div>
                 </div>
             </div>
