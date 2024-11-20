@@ -15,17 +15,29 @@ public class BooksController : Controller
     }
 
     [HttpGet("/books")]
-    public async Task<IActionResult> GetAllBooks()
+    public async Task<IActionResult> GetAllBooks(string searchQuery)
     {
         var response = await _httpClient.GetAsync(_httpClient.BaseAddress + "/media/books");
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
             var books = JsonConvert.DeserializeObject<List<Book>>(content);
-            return View("Index", books);  
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                ViewData["SearchQuery"] = searchQuery;
+                books = books.Where(b =>
+                    (b.Title != null && b.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) ||
+                    (b.Description != null && b.Description.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
+                ).ToList();
+            }
+
+            return View("Index", books);
         }
         return View("Error");
     }
+
+
 
 
     [HttpGet("/books/{id}")]

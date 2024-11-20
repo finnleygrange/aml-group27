@@ -16,17 +16,29 @@ public class DvdsController : Controller
     }
 
     [HttpGet("/dvds")]
-    public async Task<IActionResult> GetAllDvds()
+    public async Task<IActionResult> GetAllDvds(string searchQuery)
     {
         var response = await _httpClient.GetAsync(_httpClient.BaseAddress + "/media/dvds");
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
             var dvds = JsonConvert.DeserializeObject<List<DVD>>(content);
-            return View("Index", dvds);  
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                ViewData["SearchQuery"] = searchQuery;
+                dvds = dvds.Where(d =>
+                    (d.Title != null && d.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) ||
+                    (d.Description != null && d.Description.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
+                ).ToList();
+            }
+
+            return View("Index", dvds);
         }
         return View("Error");
     }
+
+
 
 
     [HttpGet("/dvds/{id}")]

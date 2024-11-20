@@ -15,17 +15,29 @@ public class GamesController : Controller
     }
 
     [HttpGet("/games")]
-    public async Task<IActionResult> GetAllGames()
+    public async Task<IActionResult> GetAllGames(string searchQuery)
     {
         var response = await _httpClient.GetAsync(_httpClient.BaseAddress + "/media/games");
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
             var games = JsonConvert.DeserializeObject<List<Game>>(content);
-            return View("Index", games);  
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                ViewData["SearchQuery"] = searchQuery;
+                games = games.Where(g =>
+                    (g.Title != null && g.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) ||
+                    (g.Description != null && g.Description.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
+                ).ToList();
+            }
+
+            return View("Index", games);
         }
-        return View("Error");  
+        return View("Error");
     }
+
+
 
 
     [HttpGet("/games/{id}")]

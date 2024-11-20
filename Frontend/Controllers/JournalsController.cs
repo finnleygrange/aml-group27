@@ -15,17 +15,29 @@ public class JournalsController : Controller
     }
 
     [HttpGet("/journals")]
-    public async Task<IActionResult> GetAllJournals()
+    public async Task<IActionResult> GetAllJournals(string searchQuery)
     {
         var response = await _httpClient.GetAsync(_httpClient.BaseAddress + "/media/journals");
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
             var journals = JsonConvert.DeserializeObject<List<Journal>>(content);
-            return View("Index", journals); 
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                ViewData["SearchQuery"] = searchQuery;
+                journals = journals.Where(j =>
+                    (j.Title != null && j.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) ||
+                    (j.Description != null && j.Description.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
+                ).ToList();
+            }
+
+            return View("Index", journals);
         }
         return View("Error");
     }
+
+
 
     [HttpGet("/journals/{id}")]
     public async Task<IActionResult> GetJournal(int id)
