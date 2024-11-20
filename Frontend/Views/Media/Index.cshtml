@@ -35,9 +35,25 @@ else
 
                         <p class="card-text">@mediaItem.Description</p>
 
-                        <a href="@Url.Action("Details", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
-                        <a href="@Url.Action("Edit", new { id = mediaItem.Id })" class="btn btn-warning">Edit</a>
-                        <a href="@Url.Action("Delete", new { id = mediaItem.Id })" class="btn btn-danger">Delete</a>
+                        @if (mediaItem.MediaType.Name == "Book")
+                        {
+                            <a href="@Url.Action("GetBook", "Books", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
+                        }
+                        else if (mediaItem.MediaType.Name == "DVD")
+                        {
+                            <a href="@Url.Action("GetDvd", "Dvds", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
+                        }
+                        else if (mediaItem.MediaType.Name == "Game")
+                        {
+                            <a href="@Url.Action("GetGame", "Games", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
+                        }
+                        else if (mediaItem.MediaType.Name == "Journal")
+                        {
+                            <a href="@Url.Action("GetJournal", "Journals", new { id = mediaItem.Id })" class="btn btn-primary">View Details</a>
+                        }
+
+                        <a href="@Url.Action("Edit", "Media", new { id = mediaItem.Id })" class="btn btn-warning">Edit</a>
+                        <a href="@Url.Action("Delete", "Media", new { id = mediaItem.Id })" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>
@@ -45,4 +61,4 @@ else
     </div>
 }
 
-<a href="@Url.Action("Create")" class="btn btn-success mt-3">Create New Media</a>
+<a href="@Url.Action("Create", "Media")" class="btn btn-success mt-3">Create New Media</a>
