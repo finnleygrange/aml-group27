@@ -6,6 +6,16 @@
 
 <h1 class="my-4">@ViewData["Title"]</h1>
 
+<div class="mb-3">
+    <form method="get" action="@Url.Action("Index", "Books")">
+        <div class="input-group">
+            <input type="text" name="searchQuery" class="form-control" placeholder="Search books..."
+                   value="@ViewData["SearchQuery"]" />
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+        </div>
+    </form>
+</div>
+
 @if (Model.Count == 0)
 {
     <div class="alert alert-warning" role="alert">
