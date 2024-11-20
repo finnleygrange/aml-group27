@@ -41,7 +41,7 @@ public class DvdsController : Controller
 
 
 
-    [HttpGet("/dvds/{id}")]
+    [HttpGet("/dvds/details/{id}")]
     public async Task<IActionResult> GetDvd(int id)
     {
         var response = await _httpClient.GetAsync(_httpClient.BaseAddress + $"/media/dvds/{id}");

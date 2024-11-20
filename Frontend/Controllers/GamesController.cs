@@ -40,7 +40,7 @@ public class GamesController : Controller
 
 
 
-    [HttpGet("/games/{id}")]
+    [HttpGet("/games/details/{id}")]
     public async Task<IActionResult> GetGame(int id)
     {
         var response = await _httpClient.GetAsync(_httpClient.BaseAddress + $"/media/games/{id}");

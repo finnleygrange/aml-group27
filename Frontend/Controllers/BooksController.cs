@@ -40,18 +40,19 @@ public class BooksController : Controller
 
 
 
-    [HttpGet("/books/{id}")]
+    [HttpGet("/books/details/{id}")]
     public async Task<IActionResult> GetBook(int id)
     {
-        var response = await _httpClient.GetAsync(_httpClient.BaseAddress + $"/media/books/{id}");
+        var response = await _httpClient.GetAsync(_httpClient.BaseAddress + $"/media/books/{id}"); // Change /books/{id} to /media/books/{id}
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
             var book = JsonConvert.DeserializeObject<Book>(content);
-            return View("Details", book);  
+            return View("Details", book);
         }
         return View("Error");
     }
+
 
 
     [HttpGet("/books/create")]

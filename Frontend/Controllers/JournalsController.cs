@@ -39,7 +39,7 @@ public class JournalsController : Controller
 
 
 
-    [HttpGet("/journals/{id}")]
+    [HttpGet("/journals/details/{id}")]
     public async Task<IActionResult> GetJournal(int id)
     {
         var response = await _httpClient.GetAsync(_httpClient.BaseAddress + $"/media/journals/{id}");
