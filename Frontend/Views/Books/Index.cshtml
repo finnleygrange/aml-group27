@@ -1,0 +1,38 @@
+﻿@model List<MediaService.Models.Book>
+
+@{
+    ViewData["Title"] = "Books List";
+}
+
+<h1 class="my-4">@ViewData["Title"]</h1>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-warning" role="alert">
+        No books available.
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var book in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Author: @book.Author</h6>
+                        <p class="card-text">ISBN: @book.ISBN</p>
+                        <p class="card-text">@book.Description</p>
+
+                        <a href="@Url.Action("Details", "Books", new { id = book.Id })" class="btn btn-primary">View Details</a>
+                        <a href="@Url.Action("Edit", "Books", new { id = book.Id })" class="btn btn-warning">Edit</a>
+                        <a href="@Url.Action("Delete", "Books", new { id = book.Id })" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<a href="@Url.Action("Create", "Books")" class="btn btn-success mt-3">Add New Book</a>

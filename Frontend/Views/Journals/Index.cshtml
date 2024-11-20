@@ -1,0 +1,38 @@
+﻿@model List<MediaService.Models.Journal>
+
+@{
+    ViewData["Title"] = "Journals List";
+}
+
+<h1 class="my-4">@ViewData["Title"]</h1>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-warning" role="alert">
+        No journals available.
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var journal in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@journal.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Publisher: @journal.Publisher</h6>
+                        <p class="card-text">Volume: @journal.IssueNumber</p>
+                        <p class="card-text">@journal.Description</p>
+
+                        <a href="@Url.Action("Details", "Journals", new { id = journal.Id })" class="btn btn-primary">View Details</a>
+                        <a href="@Url.Action("Edit", "Journals", new { id = journal.Id })" class="btn btn-warning">Edit</a>
+                        <a href="@Url.Action("Delete", "Journals", new { id = journal.Id })" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<a href="@Url.Action("Create", "Journals")" class="btn btn-success mt-3">Add New Journal</a>

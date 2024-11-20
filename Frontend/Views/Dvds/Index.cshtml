@@ -1,0 +1,38 @@
+﻿@model List<MediaService.Models.DVD>
+
+@{
+    ViewData["Title"] = "DVDs List";
+}
+
+<h1 class="my-4">@ViewData["Title"]</h1>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-warning" role="alert">
+        No DVDs available.
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var dvd in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@dvd.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Director: @dvd.Director</h6>
+                        <p class="card-text">Release Year: @dvd.ReleaseYear</p>
+                        <p class="card-text">@dvd.Description</p>
+
+                        <a href="@Url.Action("Details", "DVDs", new { id = dvd.Id })" class="btn btn-primary">View Details</a>
+                        <a href="@Url.Action("Edit", "DVDs", new { id = dvd.Id })" class="btn btn-warning">Edit</a>
+                        <a href="@Url.Action("Delete", "DVDs", new { id = dvd.Id })" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<a href="@Url.Action("Create", "DVDs")" class="btn btn-success mt-3">Add New DVD</a>
