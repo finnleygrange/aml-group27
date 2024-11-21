@@ -43,7 +43,7 @@ namespace MediaService.Data
                     Id = 1,
                     Title = "Example Book",
                     Description = "An example book description.",
-                    ImageUrl = "https://example.com/images/book.jpg",
+                    ImageUrl = "https://covers.openlibrary.org/w/id/851077-M.jpg",
                     MediaTypeId = 1,  // Reference MediaType table
                     Author = "John Doe",
                     ISBN = "123-456-789",
