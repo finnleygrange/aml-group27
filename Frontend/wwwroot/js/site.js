@@ -20,6 +20,6 @@ function moveCarousel(direction) {
         currentIndex = 0;
     }
 
-    const offset = -(currentIndex * (cards[0].offsetWidth + 20)); // 20px is the margin between cards
+    const offset = -(currentIndex * (cards[0].offsetWidth + 20)); 
     carousel.style.transform = `translateX(${offset}px)`;
 }
