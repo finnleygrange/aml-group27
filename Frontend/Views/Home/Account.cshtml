@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Account";
+}
+
+ <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/js/site.js" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Frontend.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+<h1>Personal Account </h1>
+
+    <!-- Main Account Section -->
+    <main class="account-container">
+        <div class="profile-info">
+            <h2>Welcome, Marry Kate</h2>
+            <div class="profile-picture">
+                <img src="/img/img7.jpg" alt="Profile Picture" />
+            </div>
+            <p><strong>Email:</strong> m.kate@example.com</p>
+             <p><strong>Joined:</strong> November 2024</p>
+            <p><strong>Membership:</strong> Active</p>
+        </div>
+
+        <!-- Borrowed Books Section -->
+        <div class="borrowed-books">
+            <h3>Borrowed Books</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Return Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>The Great Gatsby</td>
+                        <td>F. Scott Fitzgerald</td>
+                        <td>2024-12-10</td>
+                        <td><button class="return-btn">Return</button></td>
+                    </tr>
+                    <tr>
+                        <td>1984</td>
+                        <td>George Orwell</td>
+                        <td>2024-12-15</td>
+                        <td><button class="return-btn">Return</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- WishList Media Section -->
+        <div class="reserved-media">
+            <h3>WishList</h3>
+            <ul>
+                <li>The Catcher in the Rye - <span>Reserved</span></li>
+                <li>Brave New World - <span>Reserved</span></li>
+            </ul>
+        </div>
+
+        <!-- Reading History Section -->
+        <div class="reading-history">
+            <h3>Reading History</h3>
+            <ul>
+                <li>To Kill a Mockingbird - Completed</li>
+                <li>Pride and Prejudice - Completed</li>
+            </ul>
+        </div>
+
+        <!-- Account Settings Section -->
+        <div class="settings">
+            <h3>Account Settings</h3>
+            <button>Edit Profile</button>
+            <button>Change Password</button>
+            <button>Manage Subscription</button>
+        </div>
+
+    </main>
+
+    

@@ -145,5 +145,161 @@ btn:hover {
        font-size: 16px;
     }
 
+    /*account page*/
 
-       
+/* Main Account Section */
+.account-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Profile Info */
+.profile-info {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+    .profile-info h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .profile-info p {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+/* Borrowed Books Section */
+.borrowed-books {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    .borrowed-books h3 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .borrowed-books table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .borrowed-books table th,
+        .borrowed-books table td {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .borrowed-books table th {
+            background-color: #f4f4f4;
+        }
+
+.return-btn {
+    background-color: #198754;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .return-btn:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+/* Wishlist media Section */
+.reserved-media {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    .reserved-media h3 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .reserved-media ul {
+        list-style: none;
+    }
+
+    .reserved-media li {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .reserved-media span {
+        font-weight: bold;
+    }
+
+/* Reading History Section */
+.reading-history {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    .reading-history h3 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .reading-history ul {
+        list-style: none;
+    }
+
+    .reading-history li {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+/* Settings Section */
+.settings {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    .settings h3 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .settings button {
+        display: block;
+        width: 100%;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+        background-color: #198754;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        cursor: pointer;
+    }
+
+        .settings button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+
