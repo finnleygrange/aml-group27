@@ -42,6 +42,7 @@ namespace MediaService.Data
                     Description = "An example book description.",
                     MediaTypeId = 1,
                     Author = "John Doe",
+                    Genre = "Fiction",
                     ISBN = "123-456-789",
                     PageCount = 300
                 }
@@ -53,8 +54,10 @@ namespace MediaService.Data
                     Id = 2,
                     Title = "Example DVD",
                     Description = "An example DVD description.",
-                    MediaTypeId = 2,  
-                    DurationMinutes = 120,
+                    MediaTypeId = 2,
+                    Author = "Jane Doe",
+                    Genre = "Documentary",
+                    DurationMinutes = 120
                 }
             );
 
@@ -65,9 +68,10 @@ namespace MediaService.Data
                     Title = "Example Game",
                     Description = "An example game description.",
                     MediaTypeId = 3,
-                    Platform = "PC",
+                    Author = "Game Studio",
                     Genre = "Action",
-                    AgeRating = "Mature",
+                    Platform = "PC",
+                    AgeRating = "Mature"
                 }
             );
 
@@ -78,6 +82,8 @@ namespace MediaService.Data
                     Title = "Example Journal",
                     Description = "An example journal description.",
                     MediaTypeId = 4,
+                    Author = "Editor Team",
+                    Genre = "Science",
                     IssueNumber = 12
                 }
             );
