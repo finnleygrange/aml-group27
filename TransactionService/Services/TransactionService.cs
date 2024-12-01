@@ -1,35 +1,35 @@
-﻿using System.Transactions;
+﻿using TransactionService.Data;
+using TransactionService.Models;
+using System.Linq;
 
 namespace TransactionService.Services
 {
     public class TransactionService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly TransactionDbContext _context;
 
-        public TransactionService(ApplicationDbContext context)
+        public TransactionService(TransactionDbContext context)
         {
             _context = context;
         }
 
-        // Borrow Media (create a new transaction)
         public bool BorrowMedia(int userId, int mediaItemId)
         {
-            var mediaItem = _context.MediaItems.FirstOrDefault(x => x.Id == mediaItemId);
-            if (mediaItem == null || !mediaItem.IsAvailable)
+            var existingTransaction = _context.Transactions
+                .FirstOrDefault(t => t.MediaItemId == mediaItemId && t.ReturnDate == null);
+
+            if (existingTransaction != null)
             {
-                return false; // Media not found or not available
+                return false; // If there’s already an active transaction for this media item
             }
 
-            // Create a new transaction for borrowing
             var transaction = new Transaction
             {
                 UserId = userId.ToString(),
                 MediaItemId = mediaItemId,
                 BorrowDate = DateTime.Now,
-                DueDate = DateTime.Now.AddDays(mediaItem.BorrowDurationDays)
+                DueDate = DateTime.Now.AddDays(14) // Borrow for 14 days
             };
-
-            mediaItem.IsAvailable = false; // Mark media as unavailable
 
             _context.Transactions.Add(transaction);
             _context.SaveChanges();
@@ -37,49 +37,34 @@ namespace TransactionService.Services
             return true;
         }
 
-        // Renew Media (extend the due date)
         public bool RenewMedia(int transactionId)
         {
-            var transaction = _context.Transactions.FirstOrDefault(x => x.Id == transactionId);
-            if (transaction == null || transaction.ReturnDate.HasValue)
+            var transaction = _context.Transactions.FirstOrDefault(t => t.Id == transactionId);
+
+            if (transaction == null || transaction.ReturnDate != null)
             {
-                return false; // Cannot renew if already returned
+                return false; // Can't renew if transaction is already returned or doesn't exist
             }
 
-            var mediaItem = _context.MediaItems.FirstOrDefault(x => x.Id == transaction.MediaItemId);
-            if (mediaItem == null)
-            {
-                return false; // Media not found
-            }
-
-            transaction.DueDate = DateTime.Now.AddDays(mediaItem.BorrowDurationDays); // Extend due date
+            transaction.DueDate = transaction.DueDate.AddDays(14); // Extend by 14 days
             _context.SaveChanges();
 
             return true;
         }
 
-        // Return Media (mark the item as returned)
         public bool ReturnMedia(int transactionId)
         {
-            var transaction = _context.Transactions.FirstOrDefault(x => x.Id == transactionId);
-            if (transaction == null || transaction.ReturnDate.HasValue)
+            var transaction = _context.Transactions.FirstOrDefault(t => t.Id == transactionId);
+
+            if (transaction == null || transaction.ReturnDate != null)
             {
-                return false; // Cannot return if already returned
+                return false; // Can't return if already returned or transaction doesn’t exist
             }
 
-            var mediaItem = _context.MediaItems.FirstOrDefault(x => x.Id == transaction.MediaItemId);
-            if (mediaItem == null)
-            {
-                return false; // Media not found
-            }
-
-            transaction.ReturnDate = DateTime.Now; // Mark as returned
-            mediaItem.IsAvailable = true; // Mark media as available again
-
+            transaction.ReturnDate = DateTime.Now; // Mark the media as returned
             _context.SaveChanges();
 
             return true;
         }
     }
-
 }

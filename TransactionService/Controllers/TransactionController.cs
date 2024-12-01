@@ -2,53 +2,49 @@
 
 namespace TransactionService.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class TransactionController : Controller
     {
-        private readonly TransactionService _transactionService;
+        private readonly Services.TransactionService _transactionService;
 
-        public TransactionController(TransactionService transactionService)
+        public TransactionController(Services.TransactionService transactionService)
         {
             _transactionService = transactionService;
         }
 
-        // Action to borrow a media item (book)
-        [HttpPost]
+        [HttpPost("borrow")]
         public IActionResult Borrow(int userId, int mediaItemId)
         {
             bool result = _transactionService.BorrowMedia(userId, mediaItemId);
             if (result)
             {
-                return RedirectToAction("Success"); // Redirect to a success page
+                return Ok("Transaction successful.");
             }
-
-            return RedirectToAction("Error"); // Redirect to an error page
+            return BadRequest("Failed to borrow media.");
         }
 
-        // Action to renew a media item (book)
-        [HttpPost]
+        [HttpPost("renew")]
         public IActionResult Renew(int transactionId)
         {
             bool result = _transactionService.RenewMedia(transactionId);
             if (result)
             {
-                return RedirectToAction("Success");
+                return Ok("Transaction renewed.");
             }
-
-            return RedirectToAction("Error");
+            return BadRequest("Failed to renew media.");
         }
 
-        // Action to return a media item (book)
-        [HttpPost]
+        [HttpPost("return")]
         public IActionResult Return(int transactionId)
         {
             bool result = _transactionService.ReturnMedia(transactionId);
             if (result)
             {
-                return RedirectToAction("Success");
+                return Ok("Transaction returned.");
             }
-
-            return RedirectToAction("Error");
+            return BadRequest("Failed to return media.");
         }
     }
-
 }
+
