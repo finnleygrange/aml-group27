@@ -1,7 +1,24 @@
 ﻿@model MediaService.Models.DVD
 
-<h1>@Model.Title</h1>
+<!-- Main DVD Details Section -->
+    <main class="book-details-container">
+        <div class="book-info">
+            <h1>@Model.Title</h1>
+            <p><strong>Director:</strong> @Model.Director</p>
+            <p><strong>Release Year:</strong> @Model.ReleaseYear</p>
+            <p><strong>Duration:</strong> @Model.DurationMinutes</p>
 
+<<<<<<< HEAD
+            <div class="availability">
+                <p><strong>Status:</strong> Available</p>
+                <!-- Change text based on availability -->
+            </div>
+
+            <div class="book-description">
+                <h3><strong>Description:</strong></h3>
+                 <p>@Model.Description</p>
+            </div>
+=======
 <div>
     <strong>Duration:</strong> @Model.DurationMinutes
 </div>
@@ -9,10 +26,14 @@
     <strong>Description:</strong>
     <p>@Model.Description</p>
 </div>
+>>>>>>> 0865a8ca88ca33d6a8a33216b9b76d2d72623053
 
 <div class="mt-3">
-    <a href="@Url.Action("EditDvd", "Dvds", new { id = Model.Id })" class="btn btn-warning">Edit</a>
-    <a href="@Url.Action("DeleteDvd", "Dvds", new { id = Model.Id })" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this DVD?')">Delete</a>
-</div>
+    <a href="@Url.Action("EditDvd", "Dvds", new { id = Model.Id })" class="btn btn-outline-success">Add to WishList</a>
+    <a href="@Url.Action("EditDvd", "Dvds", new { id = Model.Id })" class="btn btn-outline-success">Borrow</a>
+    <a href="@Url.Action("EditDvd", "Dvds", new { id = Model.Id })" class="btn btn-outline-success">Play</a>
 
-<a href="@Url.Action("GetAllDvds", "Dvds")" class="btn btn-primary mt-3">Back to List</a>
+    </main>
+
+ <a href="@Url.Action("GetAllDvds", "Dvds")" class="btn btn-success btn-lg">Back to List</a>
+
