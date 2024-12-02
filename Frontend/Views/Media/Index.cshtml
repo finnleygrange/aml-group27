@@ -7,7 +7,6 @@
 <h1 class="display-4">@ViewData["Title"]</h1>
 
 <div class="container">
-    <!-- Book Carousel -->
     <h2 class="my-4 text-center">Books</h2>
     <div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -15,7 +14,6 @@
             {
                 <div class="carousel-item @(mediaItem == Model.FirstOrDefault(m => m.MediaType.Name == "Book") ? "active" : "")">
                     <div class="card shadow-sm border-light rounded">
-                            <img src="@mediaItem.ImageUrl" class="card-img-top" alt="Book Image" style="width=300px height=150px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title text-truncate" style="font-size: 1.25rem;">@mediaItem.Title</h5>
                             <h6 class="card-subtitle mb-2 text-muted">ID: @mediaItem.Id</h6>
@@ -32,7 +30,6 @@
         </div>
     </div>
 
-    <!-- DVD Carousel -->
     <h2 class="my-4 text-center">DVDs</h2>
     <div id="dvdCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -40,7 +37,6 @@
             {
                 <div class="carousel-item @(mediaItem == Model.FirstOrDefault(m => m.MediaType.Name == "DVD") ? "active" : "")">
                     <div class="card shadow-sm border-light rounded">
-                            <img src="@mediaItem.ImageUrl" class="card-img-top" alt="DVD Image" style="width=300px height=150px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title text-truncate" style="font-size: 1.25rem;">@mediaItem.Title</h5>
                             <h6 class="card-subtitle mb-2 text-muted">ID: @mediaItem.Id</h6>
@@ -65,7 +61,6 @@
             {
                 <div class="carousel-item @(mediaItem == Model.FirstOrDefault(m => m.MediaType.Name == "Game") ? "active" : "")">
                     <div class="card shadow-sm border-light rounded">
-                            <img src="@mediaItem.ImageUrl" class="card-img-top" alt="Game Image" style="width=300px height=150px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title text-truncate" style="font-size: 1.25rem;">@mediaItem.Title</h5>
                             <h6 class="card-subtitle mb-2 text-muted">ID: @mediaItem.Id</h6>
@@ -90,7 +85,6 @@
             {
                 <div class="carousel-item @(mediaItem == Model.FirstOrDefault(m => m.MediaType.Name == "Journal") ? "active" : "")">
                     <div class="card shadow-sm border-light rounded">
-                            <img src="@mediaItem.ImageUrl" class="card-img-top" alt="Journal Image" style="width=300px height=150px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title text-truncate" style="font-size: 1.25rem;">@mediaItem.Title</h5>
                             <h6 class="card-subtitle mb-2 text-muted">ID: @mediaItem.Id</h6>
