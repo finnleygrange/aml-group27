@@ -31,8 +31,6 @@ else
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">@dvd.Title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Director: @dvd.Director</h6>
-                        <p class="card-text">Release Year: @dvd.ReleaseYear</p>
                         <p class="card-text">@dvd.Description</p>
 
                         <a href="@Url.Action("Details", "DVDs", new { id = dvd.Id })" class="btn btn-primary">View Details</a>

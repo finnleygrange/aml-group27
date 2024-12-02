@@ -89,7 +89,6 @@ namespace MediaService.Controllers
 
             dbBook.Title = updatedBook.Title;
             dbBook.Description = updatedBook.Description;
-            dbBook.ImageUrl = updatedBook.ImageUrl;
             dbBook.Author = updatedBook.Author;
             dbBook.ISBN = updatedBook.ISBN;
             dbBook.PageCount = updatedBook.PageCount;
@@ -162,10 +161,7 @@ namespace MediaService.Controllers
 
             dbDvd.Title = updatedDvd.Title;
             dbDvd.Description = updatedDvd.Description;
-            dbDvd.ImageUrl = updatedDvd.ImageUrl;
-            dbDvd.Director = updatedDvd.Director;
             dbDvd.DurationMinutes = updatedDvd.DurationMinutes;
-            dbDvd.ReleaseYear = updatedDvd.ReleaseYear;
 
             await _dbContext.SaveChangesAsync();
 
@@ -235,11 +231,9 @@ namespace MediaService.Controllers
 
             dbGame.Title = updatedGame.Title;
             dbGame.Description = updatedGame.Description;
-            dbGame.ImageUrl = updatedGame.ImageUrl;
             dbGame.Platform = updatedGame.Platform;
             dbGame.Genre = updatedGame.Genre;
             dbGame.AgeRating = updatedGame.AgeRating;
-            dbGame.Developer = updatedGame.Developer;
 
             await _dbContext.SaveChangesAsync();
 
@@ -310,8 +304,6 @@ namespace MediaService.Controllers
 
             dbJournal.Title = updatedJournal.Title;
             dbJournal.Description = updatedJournal.Description;
-            dbJournal.ImageUrl = updatedJournal.ImageUrl;
-            dbJournal.Publisher = updatedJournal.Publisher;
             dbJournal.IssueNumber = updatedJournal.IssueNumber;
 
             await _dbContext.SaveChangesAsync();

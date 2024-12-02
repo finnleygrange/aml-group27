@@ -1,5 +1,6 @@
 ﻿@model MediaService.Models.Journal
 
+<<<<<<< HEAD
 <!-- Main Journals Details Section -->
     <main class="book-details-container">
         <div class="book-info">
@@ -16,6 +17,16 @@
                 <h3><strong>Description:</strong></h3>
                  <p>@Model.Description</p>
             </div>
+=======
+<h1>@Model.Title</h1>
+<div>
+    <strong>Issue Number:</strong> @Model.IssueNumber
+</div>
+<div>
+    <strong>Description:</strong>
+    <p>@Model.Description</p>
+</div>
+>>>>>>> 0865a8ca88ca33d6a8a33216b9b76d2d72623053
 
 <div class="mt-3">
    <a href="@Url.Action("EditJournal", "Journals", new { id = Model.Id })" class="btn btn-outline-success">Add to WishList</a>
