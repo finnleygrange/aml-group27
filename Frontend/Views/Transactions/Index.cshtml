@@ -1,0 +1,42 @@
+﻿@using TransactionService.Models
+@model List<Transaction>
+
+
+@{
+    ViewData["Title"] = "My Transactions";
+}
+
+<h1>Transactions</h1>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Media Item ID</th>
+                <th>Borrow Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model)
+            {
+                <tr>
+                    <td>@transaction.Id</td>
+                    <td>@transaction.MediaItemId</td>
+                    <td>@transaction.BorrowDate.ToString("MM/dd/yyyy")</td>
+                    <td>@transaction.DueDate.ToString("MM/dd/yyyy")</td>
+                    <td>@transaction.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No transactions found.</p>
+}
+
+<a href="@Url.Action("GetAllTransactions", "Transactions")" class="btn btn-primary">Refresh</a>

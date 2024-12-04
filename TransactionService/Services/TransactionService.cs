@@ -13,22 +13,22 @@ namespace TransactionService.Services
             _context = context;
         }
 
-        public bool BorrowMedia(int userId, int mediaItemId)
+        public bool BorrowMedia(int mediaItemId)
         {
             var existingTransaction = _context.Transactions
                 .FirstOrDefault(t => t.MediaItemId == mediaItemId && t.ReturnDate == null);
 
             if (existingTransaction != null)
             {
-                return false; // If there’s already an active transaction for this media item
+                return false;
             }
 
             var transaction = new Transaction
             {
-                UserId = userId.ToString(),
                 MediaItemId = mediaItemId,
                 BorrowDate = DateTime.Now,
-                DueDate = DateTime.Now.AddDays(14) // Borrow for 14 days
+                DueDate = DateTime.Now.AddDays(14),
+                Status = "Borrowed"
             };
 
             _context.Transactions.Add(transaction);
@@ -43,10 +43,11 @@ namespace TransactionService.Services
 
             if (transaction == null || transaction.ReturnDate != null)
             {
-                return false; // Can't renew if transaction is already returned or doesn't exist
+                return false;
             }
 
-            transaction.DueDate = transaction.DueDate.AddDays(14); // Extend by 14 days
+            transaction.DueDate = transaction.DueDate.AddDays(14);
+            transaction.Status = "Renewed";
             _context.SaveChanges();
 
             return true;
@@ -58,13 +59,19 @@ namespace TransactionService.Services
 
             if (transaction == null || transaction.ReturnDate != null)
             {
-                return false; // Can't return if already returned or transaction doesn’t exist
+                return false;
             }
 
-            transaction.ReturnDate = DateTime.Now; // Mark the media as returned
+            transaction.ReturnDate = DateTime.Now;
+            transaction.Status = "Returned";
             _context.SaveChanges();
 
             return true;
+        }
+
+        public List<Transaction> GetAllTransactions()
+        {
+            return _context.Transactions.ToList();
         }
     }
 }

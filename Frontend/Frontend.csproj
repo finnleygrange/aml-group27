@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MediaService\MediaService.csproj" />
+    <ProjectReference Include="..\TransactionService\TransactionService.csproj" />
   </ItemGroup>
 
   <ItemGroup>

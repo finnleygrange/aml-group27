@@ -2,6 +2,9 @@
     ViewData["Title"] = "Account";
 }
 
+@using TransactionService.Models
+@model List<Transaction>
+
  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/js/site.js" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -11,7 +14,6 @@
 
 <h1>Personal Account </h1>
 
-    <!-- Main Account Section -->
     <main class="account-container">
         <div class="profile-info">
             <h2>Welcome, Marry Kate</h2>
@@ -23,36 +25,41 @@
             <p><strong>Membership:</strong> Active</p>
         </div>
 
-        <!-- Borrowed Books Section -->
         <div class="borrowed-books">
-            <h3>Borrowed Books</h3>
-            <table id="borrowed-books-table">
+            <h3>Transactions</h3>
+
+        @if (Model != null && Model.Any())
+        {
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Book Title</th>
-                        <th>Author</th>
-                        <th>Return Date</th>
-                        <th>Action</th>
+                        <th>Transaction ID</th>
+                        <th>Media Item ID</th>
+                        <th>Borrow Date</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>The Great Gatsby</td>
-                        <td>F. Scott Fitzgerald</td>
-                        <td>2024-12-10</td>
-                        <td><button class="return-btn">Return</button></td>
-                    </tr>
-                    <tr>
-                        <td>1984</td>
-                        <td>George Orwell</td>
-                        <td>2024-12-15</td>
-                        <td><button class="return-btn">Return</button></td>
-                    </tr>
+                    @foreach (var transaction in Model)
+                    {
+                        <tr>
+                            <td>@transaction.Id</td>
+                            <td>@transaction.MediaItemId</td>
+                            <td>@transaction.BorrowDate.ToString("MM/dd/yyyy")</td>
+                            <td>@transaction.DueDate.ToString("MM/dd/yyyy")</td>
+                            <td>@transaction.Status</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
+        }
+        else
+        {
+            <p>No transactions found.</p>
+        }
         </div>
 
-        <!-- WishList Media Section -->
         <div class="reserved-media">
             <h3>WishList</h3>
             <ul>
@@ -61,7 +68,6 @@
             </ul>
         </div>
 
-        <!-- Reading History Section -->
         <div class="reading-history">
             <h3>Reading History</h3>
             <ul>
@@ -70,7 +76,6 @@
             </ul>
         </div>
 
-        <!-- Account Settings Section -->
         <div class="settings">
             <h3>Account Settings</h3>
             <button>Edit Profile</button>
