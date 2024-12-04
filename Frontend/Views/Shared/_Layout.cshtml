@@ -13,43 +13,44 @@
     <header>
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AML</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        </li>
-        <li class="nav-item">
-         <a class="nav-link active" asp-area="" asp-controller="Media" asp-action="Index">Media</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Browse
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-         <li><a class="dropdown-item" asp-area="" asp-controller="Books" asp-action="Index">Books</a></li>
-         <li><a class="dropdown-item" asp-area="" asp-controller="Dvds" asp-action="Index">DVDs</a></li>
-         <li><a class="dropdown-item" asp-area="" asp-controller="Journals" asp-action="Index">Journals</a></li>
-         <li><a class="dropdown-item" asp-area="" asp-controller="Games" asp-action="Index">Games</a></li>
-             <li><hr class="dropdown-divider"></li>
-               <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Search">Search</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Account">Account</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" >Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AML</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Search">Search</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Browse
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Media" asp-action="Index">All Media</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Books" asp-action="Index">Books</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Dvds" asp-action="Index">DVDs</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Journals" asp-action="Index">Journals</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Games" asp-action="Index">Games</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Account">Account</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
 
     </header>
 
@@ -58,10 +59,10 @@
             @RenderBody()
         </main>
     </div>
-   
+
     <footer class="bg-dark border-top footer text-center text-muted">
         <div class="container">
-            &copy; 2024 - AML - 
+            &copy; 2024 - AML -
             <a href="#!" style="color: #198754;">FAQ</a>
             <a href="#!" style="color: #198754;">Pricing</a>
             <a href="#!" style="color: #198754;">Safety</a>
