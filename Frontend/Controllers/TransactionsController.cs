@@ -37,7 +37,7 @@ namespace Frontend.Controllers
         }
 
         [HttpGet]
-        public IActionResult Borrow(int mediaItemId)
+        public IActionResult Borrow(int mediaItemId) 
         {
             return View(mediaItemId); 
         }
