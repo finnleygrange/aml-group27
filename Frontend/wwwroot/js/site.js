@@ -26,43 +26,82 @@ function moveCarousel(direction) {
 
 
 //acount page, returns btn//
-// Wait for the DOM to load fully
 document.addEventListener('DOMContentLoaded', function () {
+    // Sample in-memory data for reading history and transactions
+    let readingHistory = [
+        { bookId: 1, title: "To Kill a Mockingbird", status: "Not Returned" },
+        { bookId: 2, title: "Pride and Prejudice", status: "Not Returned" }
+    ];
+
+    let transactions = [
+        { transactionId: 1, mediaItemId: 1001, borrowDate: "12/01/2024", dueDate: "12/15/2024", status: "Borrowed" },
+        { transactionId: 2, mediaItemId: 1002, borrowDate: "12/02/2024", dueDate: "12/16/2024", status: "Borrowed" }
+    ];
+
+    // Function to render the reading history
+    function renderReadingHistory() {
+        const readingHistoryContainer = document.querySelector('.reading-history ul');
+        readingHistoryContainer.innerHTML = ''; // Clear existing list
+        readingHistory.forEach(book => {
+            const li = document.createElement('li');
+            li.id = `book-${book.bookId}`;
+            li.innerHTML = `${book.title} - <button class="return-btn" data-book-id="${book.bookId}">${book.status === 'Not Returned' ? 'Return' : 'Returned'}</button>`;
+            readingHistoryContainer.appendChild(li);
+        });
+    }
+
+    // Function to render the transactions table (if necessary)
+    function renderTransactionTable() {
+        const transactionTableBody = document.querySelector('.borrowed-books table tbody');
+        transactionTableBody.innerHTML = ''; // Clear existing table
+        transactions.forEach(transaction => {
+            const tr = document.createElement('tr');
+            tr.id = `transaction-${transaction.transactionId}`;
+            tr.innerHTML = `
+                <td>${transaction.transactionId}</td>
+                <td>${transaction.mediaItemId}</td>
+                <td>${transaction.borrowDate}</td>
+                <td>${transaction.dueDate}</td>
+                <td class="status">${transaction.status}</td>
+            `;
+            transactionTableBody.appendChild(tr);
+        });
+    }
+
+    // Initial render
+    renderReadingHistory();
+    renderTransactionTable();
+
     // Add event listener to each 'Return' button
     document.querySelectorAll('.return-btn').forEach(button => {
         button.addEventListener('click', function () {
-            const row = this.closest('tr'); // Find the row that the button is in
-            const bookTitle = row.querySelector('td:first-child').textContent.trim(); // Get the book title
-            const returnDate = row.querySelector('td:nth-child(3)').textContent.trim(); // Get the return date
+            const bookId = this.getAttribute('data-book-id');  // Get the book ID
 
-            // Change button to 'Returned' and update the status in the table
-            row.querySelector('td:nth-child(4)').innerHTML = '<span>Returned</span>'; // Update the status
-            this.disabled = true;  // Disable the button after it's clicked
-            this.textContent = 'Returned'; // Optionally, change button text
+            // Find the book in the reading history and update its status
+            const book = readingHistory.find(b => b.bookId == bookId);
+            if (book && book.status === 'Not Returned') {
+                book.status = 'Returned'; // Mark the book as returned
+            }
 
-            // If you want to send an update to the server (optional)
-            fetch('/Account/ReturnBook', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ bookTitle, returnDate })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        console.log('Book returned successfully');
-                    } else {
-                        alert('Error marking the book as returned');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error communicating with the server');
-                });
+            // Find the corresponding transaction and update its status
+            const transaction = transactions.find(t => t.transactionId == bookId);
+            if (transaction && transaction.status === 'Borrowed') {
+                transaction.status = 'Returned'; // Mark the transaction as returned
+            }
+
+            // Update the DOM (UI)
+            renderReadingHistory();  // Re-render reading history
+            renderTransactionTable();  // Re-render transaction table
+
+            // Disable the button and change text to 'Returned'
+            this.disabled = true;
+            this.textContent = 'Done';
+
+            console.log(`${book.title} has been marked as returned.`);
         });
     });
 });
+
 
 //borrow btn
 document.getElementById('borrow-btn').addEventListener('click', function () {
