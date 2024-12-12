@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Disable the button and change text to 'Returned'
             this.disabled = true;
-            this.textContent = 'Done';
+            this.textContent = 'Returned';
 
             console.log(`${book.title} has been marked as returned.`);
         });
